@@ -37,7 +37,7 @@ pipeline {
                      steps{
                          script {
                              if(!env.sysdig_plugin){    
-                                 withCredentials([usernamePassword(credentialsId: 'sysdig-sa-credentials', passwordVariable: 'secure_api_token')]) {
+                                 withCredentials([usernamePassword(credentialsId: 'sysdig-sa-credentials-new', passwordVariable: 'secure_api_token')]) {
                                     sh 'curl -LO "https://download.sysdig.com/scanning/bin/sysdig-cli-scanner/$(curl -L -s https://download.sysdig.com/scanning/sysdig-cli-scanner/latest_version.txt)/linux/amd64/sysdig-cli-scanner"'
                                     sh 'chmod +x ./sysdig-cli-scanner'
                                     sh "SECURE_API_TOKEN=${secure_api_token} ./sysdig-cli-scanner --apiurl ${sysdig_url} ${sysdig_cli_args} ${registry_url}/${registry_repo}/${docker_tag}"
@@ -53,7 +53,7 @@ pipeline {
                     steps{
                         script{
                             if(env.sysdig_plugin){
-                                sysdigImageScan engineCredentialsId: 'sysdig-sa-credentials', imageName: "${registry_url}/${registry_repo}/${docker_tag}", engineURL: "${params.sysdig_url}", policiesToApply: "${params.plugin_policies_to_apply}", bailOnFail: "${params.bail_on_fail}", bailOnPluginFail: "${params.bail_on_plugin_fail}"
+                                sysdigImageScan engineCredentialsId: 'sysdig-sa-credentials-new', imageName: "${registry_url}/${registry_repo}/${docker_tag}", engineURL: "${params.sysdig_url}", policiesToApply: "${params.plugin_policies_to_apply}", bailOnFail: "${params.bail_on_fail}", bailOnPluginFail: "${params.bail_on_plugin_fail}"
                             }
                             else{
                                 echo 'Using CLI Scan'
