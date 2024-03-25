@@ -47,12 +47,6 @@ spec:
         string(name: "sysdig_cli_args", defaultValue: "", trim: true, description: "Optional inline arguments (Sysdig CLI Scanner Execution only)")
     }
     stages {
-        stage('Clean Workspace') {  // Cleans the workspace to avoid old files conflicts
-            steps {
-                cleanWs()
-                sh 'rm -rf .git'
-            }
-        }
         stage('Clone repo'){  // Clones repo into the working directory
             steps{
                 sh "git clone ${git_repository} ."
