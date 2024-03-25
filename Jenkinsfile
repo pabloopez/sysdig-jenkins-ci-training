@@ -1,13 +1,12 @@
 pipeline {
     agent any
     parameters {  // Defines Parameters as Code
-        string(name: "git_repository", defaultValue: "https://github.com/dacesmo/sysdig-jenkins-ci-training.git", trim: true, description: "Git Repo to build Dockerfile from")
+        string(name: "git_repository", defaultValue: "https://github.com/pabloopez/sysdig-jenkins-ci-training.git", trim: true, description: "Git Repo to build Dockerfile from")
         string(name: "git_branch", defaultValue: "main", trim: true, description: "Git branch to build Dockerfile from")
         string(name: "docker_tag", defaultValue: "myapp:v1.0.1", trim: true, description: "Docker Image Tag")
         string(name: "registry_url", defaultValue: "ghcr.io", trim: true, description: "Container Registry URL")
-        string(name: "registry_repo", defaultValue: "dacesmo", trim: true, description: "Container Registry URL")
-        string(name: "sysdig_url", defaultValue: "https://us2.app.sysdig.com", trim: true, description: "Sysdig URL based on Sysdig SaaS region")
-        booleanParam(name: 'sysdig_plugin', defaultValue: true, description: 'Want to use Sysdig Jenkins Plugin? (Else, cli scanned will be performed)')
+        string(name: "registry_repo", defaultValue: "pabloopez", trim: true, description: "Container Registry URL")
+        string(name: "sysdig_url", defaultValue: "https://secure.sysdig.com", trim: true, description: "Sysdig URL based on Sysdig SaaS region")
         string(name: "plugin_policies_to_apply", defaultValue: "", description: "Space separated list of policies to apply (Plugin execution only)")
         booleanParam(name: 'bail_on_fail', defaultValue: true, description: 'Want to stop the Pipeline execution if the Scan returns a failed policy evaluation? (Plugin execution only)')
         booleanParam(name: 'bail_on_plugin_fail', defaultValue: true, description: 'Want to stop the pipeline if the Jenkins Plugin Fails? (Plugin execution only)')
