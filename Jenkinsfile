@@ -66,7 +66,7 @@ spec:
         }
         stage('Plugin Scan'){  // Scans the built image using the Sysdig Jenkins Plugin
             steps{
-                sysdig engineCredentialsId: "${sysdig-secure-api-credentials}", imageName: "${registry_url}/${registry_repo}/${docker_tag}", engineURL: "${params.sysdig_url}", policiesToApply: "${params.plugin_policies_to_apply}", bailOnFail: "${params.bail_on_fail}", bailOnPluginFail: "${params.bail_on_plugin_fail}"
+                sysdig engineCredentialsId: "${sysdig-secure-api-credentials}", name: "${registry_url}/${registry_repo}/${docker_tag}", engineURL: "${params.sysdig_url}", policiesToApply: "${params.plugin_policies_to_apply}", bailOnFail: "${params.bail_on_fail}", bailOnPluginFail: "${params.bail_on_plugin_fail}"
             }    
         }
         stage('Push Docker Image'){  // Pushes the images to the Container Registry
